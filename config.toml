@@ -2,6 +2,7 @@ baseURL = 'http://awsome.expert/'
 languageCode = 'en-us'
 title = 'AWSome Expert'
 theme = "awsome"
+# sectionPagesMenu = "main"
 [menu]
   [[menu.main]]
     name = "Home"
@@ -9,12 +10,26 @@ theme = "awsome"
     url = "/"
     weight = 1
   [[menu.main]]
-    name = "Posts"
-    pre = "pen-tool"
-    url = "/posts/"
+    name = "About"
+    pre = "about"
+    url = "/#about"
     weight = 2
   [[menu.main]]
-    name = "Tags"
-    pre = "tag"
-    url = "/tags/"
+    name = "Skills"
+    pre = "skill"
+    url = "/#skill"
     weight = 3
+  [[menu.main]]
+    name = "Contact"
+    pre = "contact"
+    url = "/#contact"
+    weight = 4
+[params]
+  billboardHeader = 'Hello!'
+  billboardContent = "I'm **Jarl Törnroos** an **AWS**ome expert and a **DevOps** believer"
+  billboardSkillsButton = 'How I can help'
+  billboardContactButton = 'Get in Touch'
+  skillsDescription = 'As a consultant, I possess a diverse set of skills that enable me to provide effective solutions to various business challenges. Here are some examples of how I can assist you:'
+  contactEmail = 'jarl.tornroos@gmail.com'
+  contactEmailButton = 'Send email'
+  contactLinkedIn = 'https://www.linkedin.com/in/tornroos'

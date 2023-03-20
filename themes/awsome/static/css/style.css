@@ -1,0 +1,361 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: latoRegular, sans-serif;
+  font-size: 1.3rem;
+  background-color: #000;
+  color: #a9a9b3;
+  line-height: 1.4;
+}
+
+h1,
+h2 {
+  color: #fff;
+  font-family: latoBold, sans-serif;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+b {
+  font-family: latoBold, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #ff9900;
+}
+
+a:hover,
+a:active,
+a.active {
+  color: #ec7212;
+  text-decoration: underline;
+}
+
+form {
+  display: inline-block;
+}
+
+.bodyContainer {
+  padding: 0rem 1rem;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  line-height: 1;
+}
+
+.header nav {
+  flex: 1 0 auto;
+}
+
+.header ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header .flexContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.header .flexContainer ul {
+  display: none;
+  justify-content: center;
+}
+
+.header .flexContainer ul li {
+  font-size: 1.2rem;
+  padding: 1.3rem 1rem;
+}
+
+.menuIsOpen {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: #000;
+}
+
+.menuIsOpen .flexContainer ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.menuIcon {
+  position: absolute;
+  right: 0;
+  flex: 0 1 auto;
+  cursor: pointer;
+  display: inline-block;
+  padding: 1.9rem 1.3rem;
+  user-select: none;
+  border: none;
+  margin: 0;
+  width: auto;
+  overflow: visible;
+  background-color: #000;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+}
+
+.menuIcon .navIcon {
+  background: #a9a9b3;
+  display: block;
+  position: relative;
+  height: 0.14rem;
+  width: 1.2rem;
+}
+
+.menuIcon .navIcon:before,
+.menuIcon .navIcon:after {
+  background: #a9a9b3;
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all 0.2s ease-out;
+  width: 100%;
+}
+
+.menuIcon .navIcon:before {
+  top: 0.35rem;
+}
+
+.menuIcon .navIcon:after {
+  top: -0.35rem;
+}
+
+
+.menuIsOpen .navIcon {
+  background: transparent;
+}
+
+.menuIsOpen .navIcon:before {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+.menuIsOpen .navIcon:after {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+
+
+.main strong {
+  color: #ff9900;
+}
+
+.billboard {
+  background: url(/images/me.png) no-repeat;
+  background-position: right top;
+  background-size: contain;
+}
+
+.billboard .content {
+  text-align: left;
+  font-family: latoBold, sans-serif;
+  font-size: 2rem;
+  margin: 1rem;
+  padding: 3rem 0;
+  max-width: 40rem;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1.6;
+}
+
+.billboard .content h1 {
+  color: #ff9900;
+  margin: 0;
+  padding: 0.5rem 0rem;
+  font-size: 1rem;
+}
+
+.contact button,
+.billboard .content button {
+  font-family: latoBold, sans-serif;
+  font-size: 1.2rem;
+  color: #000;
+  cursor: pointer;
+  display: inline-block;
+  padding: 1rem 1rem;
+  user-select: none;
+  border: none;
+  margin: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  line-height: normal;
+  background-color: #ff9900;
+  border-radius: 2rem;
+}
+
+.billboard .content button {
+  margin-top: 1rem;
+}
+
+.contact button:hover,
+.billboard .content button:hover {
+  background-color: #ec7212;
+}
+
+/* .contact button, */
+.billboard .content form:nth-child(even) button {
+  border: 1px solid #a9a9b3;
+  color: #fff;
+  background-color: #000;
+}
+
+/* .contact button:hover, */
+.billboard .content form:nth-child(even) button:hover {
+  color: #a9a9b3;
+}
+
+.about {
+  padding: 4rem 0;
+}
+
+.skills .description {
+  padding: 0 0 3rem 0;
+}
+
+.skills h1 {
+  display: none;
+}
+
+.skills a {
+  text-decoration: underline;
+}
+
+.skills .skill {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  flex-direction: column;
+}
+
+.skills .skill .skillHeader {
+  flex: 1 0 33%;
+  text-align: center;
+  font-family: latoBold, sans-serif;
+  font-weight: bold;
+  color: #fff;
+  font-size: 2rem;
+}
+
+.skills .skill .content {
+  text-align: left;
+  flex: 1 0 65;
+  padding: 1rem;
+}
+
+.skills .skill ul li {
+  font-size: 1rem;
+}
+
+.contact form {
+  margin-top: 1rem;
+  margin-right: 2rem;
+}
+
+.contact .linkedin {
+  background-color: transparent;
+  background: url(/images/linkedin.png) no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+
+.contact .linkedin:hover {
+  background-color: transparent;
+}
+
+.footer {
+  margin-top: 2.5rem;
+}
+
+.footer hr {
+  border: .06rem solid #a9a9b3;
+}
+
+.footer .footerContent {
+  text-align: center;
+  font-size: 1rem;
+  padding: 1.5rem 0;
+}
+
+@font-face {
+  font-family: latoRegular;
+  src: url(/fonts/Lato-Regular.ttf);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: latoBold;
+  src: url(/fonts/Lato-Bold.ttf);
+  font-display: swap;
+}
+
+@media (min-width: 70em) {
+  .bodyContainer {
+    padding: 0rem 5rem;
+  }
+  .header {
+    padding: 0 10%;
+  }
+  .main {
+    padding: 0 10%;
+  }
+  .header .flexContainer ul {
+    display: flex;
+  }
+  .header .flexContainer ul li {
+    background-color: #000;
+  }
+  .header .menuIcon {
+    display: none;
+  }
+  .billboard {
+    min-height: calc(100vh - 15rem);
+  }
+  .billboard .content {
+    font-size: 3.5rem;
+    margin: 3rem;
+    padding: 5rem 0;
+  }
+  .billboard .content h1 {
+    font-size: 1.5rem;
+  }
+  .skills .skill {
+    flex-direction: row;
+  }
+  .skills .skill .skillHeader {
+    font-size: 2.5rem;
+  }
+  .skills .skill:nth-child(even) .skillHeader {
+    order: 2;
+  }
+  .skills .skill:nth-child(even) .content {
+    order: 1;
+  }
+}

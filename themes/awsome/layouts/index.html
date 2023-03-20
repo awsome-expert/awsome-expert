@@ -1,5 +1,53 @@
 {{ define "main" }}
-<div id="home-jumbotron" class="jumbotron text-center">
-  <h1 class="title">{{ .Site.Title }}</h1>
+<div class="main">
+  <!-- <h1 class="title">{{ .Site.Title }}</h1> -->
+  <div class="billboard">
+    <div class="content">
+      <h1>{{ .Site.Params.billboardHeader }}</h1>
+        {{ with .Site.Params.billboardContent }}
+          {{ . | markdownify }}
+        {{ end }}
+      <div>
+        <form action="{{.Site.BaseURL}}/#skill">
+          <button type="submit">{{ .Site.Params.billboardSkillsButton }}</button>
+        </form>
+        <form action="{{.Site.BaseURL}}/#contact">
+          <button type="submit">{{ .Site.Params.billboardContactButton }}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="about" class="about">
+    {{ with .Site.GetPage "/about" }}
+      {{ .Content }}
+    {{ end }}
+  </div>
+  <div id="skill" class="skills">
+    <h2>Skills</h2>
+    <div class="description">
+      {{ .Site.Params.skillsDescription }}
+    </div>
+    {{ range where .Site.Pages "Section" "skill" }}
+      {{ if (ne .Content "") }}
+        <div class="skill">
+          <div class="skillHeader">{{ .Title }}</div>
+          <div class="content">{{ .Content }}</div>
+        </div>
+      {{ end }}
+    {{ end }}
+  </div>
+  <div id="contact" class="contact">
+    {{ with .Site.GetPage "/contact" }}
+      {{ .Content }}
+    {{ end }}
+    <div>
+      <form action="mailto:{{ .Site.Params.contactEmail }}">
+        <button type="submit">{{ .Site.Params.contactEmailButton }}</button>
+      </form>
+      <form action="{{ .Site.Params.contactLinkedIn }}">
+        <button type="submit" class="linkedin">&nbsp; &nbsp; &nbsp; &nbsp;</button>
+      </form>
+    </div>
+  </div>
 </div>
 {{ end }}

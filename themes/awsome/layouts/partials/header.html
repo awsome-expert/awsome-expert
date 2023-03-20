@@ -1,14 +1,29 @@
-<div id="nav-border" class="container">
-    <nav id="nav" class="nav justify-content-center">
+<script>
+  function toggleMenu() {
+    var header = document.getElementById("header");
+    header.className = header.className.includes("menuIsOpen")
+      ? "header"
+      : "header menuIsOpen";
+  }
+  function closeMenu() {
+    document.getElementById("header").className = "header";
+  }
+</script>
+<header id="header" class="header">
+  <div class="flexContainer">
+    <nav>
+      <ul>
         {{ range .Site.Menus.main }}
-        <a class="nav-link" href="{{ .URL }}">
-        {{ if .Pre }}
-        {{ $icon := printf "<i data-feather=\"%s\"></i> " .Pre | safeHTML }}
-        {{ $icon }}
+        <li>
+          <a class="nav-link" href="{{ .URL }}" onclick="closeMenu()">
+            {{ $text := print .Name | safeHTML }} {{ $text }}
+          </a>
+        </li>
         {{ end }}
-        {{ $text := print .Name | safeHTML }}
-        {{ $text }}
-        </a>
-        {{ end }}
+      </ul>
     </nav>
-</div>
+    <button class="menuIcon" aria-label="Toggle menu" onclick="toggleMenu()">
+      <span class="navIcon"></span>
+    </button>
+  </div>
+</header>
