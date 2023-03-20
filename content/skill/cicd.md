@@ -1,7 +1,7 @@
 ---
 title: "CI/CD"
 date: 2023-03-14T11:22:13+02:00
-draft: true
+draft: false
 ---
 
 # CI/CD

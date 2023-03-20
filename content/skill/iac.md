@@ -1,7 +1,7 @@
 ---
 title: "Infrastructure as Code (IaC)"
 date: 2023-03-14T11:21:35+02:00
-draft: true
+draft: false
 ---
 
 # Infrastructure as Code (IaC)

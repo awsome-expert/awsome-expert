@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes"
 date: 2023-03-14T11:20:19+02:00
-draft: true
+draft: false
 ---
 
 # Kubernetes

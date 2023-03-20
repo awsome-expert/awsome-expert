@@ -1,7 +1,7 @@
 ---
 title: "Serverless"
 date: 2023-03-14T11:20:06+02:00
-draft: true
+draft: false
 ---
 
 # Serverless

@@ -1,7 +1,7 @@
 ---
 title: "Contact"
 date: 2023-03-17T11:58:01+02:00
-draft: true
+draft: false
 ---
 
 ## Get in Touch
