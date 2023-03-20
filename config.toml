@@ -10,7 +10,7 @@ theme = "awsome"
     url = "/"
     weight = 1
   [[menu.main]]
-    name = "About"
+    name = "About Me"
     pre = "about"
     url = "/#about"
     weight = 2

@@ -146,7 +146,6 @@ form {
   top: -0.35rem;
 }
 
-
 .menuIsOpen .navIcon {
   background: transparent;
 }
@@ -160,8 +159,6 @@ form {
   transform: rotate(45deg);
   top: 0;
 }
-
-
 
 .main strong {
   color: #ff9900;
@@ -195,7 +192,7 @@ form {
 .contact button,
 .billboard .content button {
   font-family: latoBold, sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #000;
   cursor: pointer;
   display: inline-block;
@@ -212,7 +209,7 @@ form {
 }
 
 .billboard .content button {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .contact button:hover,
@@ -225,6 +222,7 @@ form {
   border: 1px solid #a9a9b3;
   color: #fff;
   background-color: #000;
+  margin-left: 1rem;
 }
 
 /* .contact button:hover, */
@@ -317,6 +315,21 @@ form {
 }
 
 @media (min-width: 70em) {
+  .skills .skill {
+    flex-direction: row;
+  }
+  .skills .skill .skillHeader {
+    font-size: 2.5rem;
+  }
+  .skills .skill:nth-child(even) .skillHeader {
+    order: 2;
+  }
+  .skills .skill:nth-child(even) .content {
+    order: 1;
+  }
+}
+
+@media (min-width: 55em) {
   .bodyContainer {
     padding: 0rem 5rem;
   }
@@ -345,17 +358,5 @@ form {
   }
   .billboard .content h1 {
     font-size: 1.5rem;
-  }
-  .skills .skill {
-    flex-direction: row;
-  }
-  .skills .skill .skillHeader {
-    font-size: 2.5rem;
-  }
-  .skills .skill:nth-child(even) .skillHeader {
-    order: 2;
-  }
-  .skills .skill:nth-child(even) .content {
-    order: 1;
   }
 }
