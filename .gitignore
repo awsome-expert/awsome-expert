@@ -1,2 +1,6 @@
 # misc
 .DS_Store
+
+# Backend
+contact/*.zip
+contact/contact
