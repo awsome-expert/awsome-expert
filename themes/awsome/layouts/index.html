@@ -1,4 +1,57 @@
 {{ define "main" }}
+<script>
+  function validateName() {
+    const formElement = document.contactForm;
+    const nameField = formElement.name;
+    const nameInfo = document.getElementById("nameInfo");
+    if (nameField.value.length < 2) {
+      nameInfo.innerHTML = "Please enter your name so that I know who you are :)";
+      return false;
+    }
+    nameInfo.innerHTML = "";
+    return true;
+  }
+
+  function validateEmail() {
+    const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    const formElement = document.contactForm;
+    const emailField = formElement.email;
+    const emailInfo = document.getElementById("emailInfo");
+    if (!emailField.value.match(mailformat)) {
+      emailInfo.innerHTML = "Oops! It looks like the email address you entered is incorrect.";
+      return false;
+    }
+    emailInfo.innerHTML = "";
+    return true;
+  }
+
+  function sendContact(event) {
+    event.preventDefault();
+    const formElement = document.contactForm;
+    const submitInfo = document.getElementById("submitInfo");
+    const data = new URLSearchParams(new FormData(formElement));
+
+    const nameOk = validateName();
+    const emailOk = validateEmail();
+    if (!nameOk || !emailOk) {
+      return;
+    }
+
+    submitInfo.innerHTML = "Sending...";
+
+    fetch("{{ .Site.Params.contactFormEndpoint }}", {
+      method: "post",
+      body: data,
+    })
+    .then((response) => {
+      return;
+    })
+    .then(() => {
+      submitInfo.innerHTML = "Thank you!";
+      formElement.reset();
+    });
+  }
+</script>
 <div class="main">
   <!-- <h1 class="title">{{ .Site.Title }}</h1> -->
   <div class="billboard">
@@ -37,17 +90,36 @@
     {{ end }}
   </div>
   <div id="contact" class="contact">
-    {{ with .Site.GetPage "/contact" }}
-      {{ .Content }}
-    {{ end }}
-    <div>
-      <form action="mailto:{{ .Site.Params.contactEmail }}">
-        <button type="submit">{{ .Site.Params.contactEmailButton }}</button>
-      </form>
+    <div class="description">
+      {{ with .Site.GetPage "/contact" }}
+        {{ .Content }}
+      {{ end }}
       <form action="{{ .Site.Params.contactLinkedIn }}">
-        <button type="submit" class="linkedin">&nbsp; &nbsp; &nbsp; &nbsp;</button>
+        <button type="submit" class="linkedin">
+          &nbsp; &nbsp; &nbsp; &nbsp;
+        </button>
       </form>
     </div>
+    <form name="contactForm" class="contactForm" id="contactForm">
+      <div class="inputField">
+        <label for="contactName">Name:</label>
+        <input type="text" id="contactName" name="name" onchange="validateName()" /><br />
+        <strong id="nameInfo" class="nameInfo"></strong>
+      </div>
+      <div class="inputField">
+        <label for="contactEmail">Email:</label>
+        <input type="text" id="contactEmail" name="email" onchange="validateEmail()" /><br />
+        <strong id="emailInfo" class="emailInfo"></strong>
+      </div>
+      <div class="inputField">
+        <label for="contactDetails">
+          Please feel free to share any details that might be helpful for me to know in order to best assist you:
+        </label>
+        <textarea rows="8" id="contactDetails" name="details"></textarea>
+      </div>
+      <button type="submit" onclick="sendContact(event)">Submit</button>
+      <strong id="submitInfo" class="submitInfo"></strong>
+    </form>
   </div>
 </div>
 {{ end }}

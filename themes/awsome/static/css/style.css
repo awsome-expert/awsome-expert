@@ -264,7 +264,7 @@ form {
 
 .skills .skill .content {
   text-align: left;
-  flex: 1 0 65;
+  flex: 1 0 65%;
   padding: 1rem;
 }
 
@@ -272,9 +272,50 @@ form {
   font-size: 1rem;
 }
 
-.contact form {
-  margin-top: 1rem;
-  margin-right: 2rem;
+.contact {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.contact .description {
+  padding-bottom: 1.5rem;
+}
+
+.contact .contactForm .inputField {
+  padding-bottom: 1rem;
+}
+
+.contact .contactForm label {
+  color: #fff;
+  display: block;
+  padding-bottom: 0.3rem;
+}
+
+.contact .contactForm input,
+.contact .contactForm textarea {
+  border-color: #b3b3b3;
+  background-color: transparent;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.contact .contactForm input {
+  width: 65%;
+}
+
+.contact .contactForm textarea {
+  width:100%;
+}
+
+.contact .contactForm .nameInfo,
+.contact .contactForm .emailInfo {
+  color: red;
+}
+
+.contact .contactForm .submitInfo {
+  padding-left: 1rem;
 }
 
 .contact .linkedin {
@@ -326,6 +367,18 @@ form {
   }
   .skills .skill:nth-child(even) .content {
     order: 1;
+  }
+  .contact {
+    flex-direction: row;
+  }
+  .contact .description {
+    flex: 0 0 50%;
+    padding-right: 1rem;
+  }
+  .contact .contactForm {
+    flex: 0 0 50%;
+    margin-top: 9rem;
+    padding-left: 1rem;
   }
 }
 

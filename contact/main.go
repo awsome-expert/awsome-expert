@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"encoding/base64"
 	"log"
+	"net/url"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -15,14 +17,27 @@ import (
 func HandleRequest(ctx context.Context, request events.APIGatewayV2HTTPRequest) (events.APIGatewayV2HTTPResponse, error) {
 	response := &HTTPResponse{}
 
-	// Get requester email address and details
-	fromEmail, ok := request.Headers["email"]
-	if !ok {
+	bodyData, _ := base64.StdEncoding.DecodeString(request.Body)
+	parameters, _ := url.ParseQuery(string(bodyData))
+
+	// Get requester name, email address and details
+	postedEmail, emailOk := parameters["email"]
+	if !emailOk {
 		log.Println("Email is required")
 		resp := response.GetError()
 		return resp, nil
 	}
-	details := request.Headers["details"]
+	fromEmail := postedEmail[0]
+	details := ""
+	postedDetails, detailsOk := parameters["details"]
+	if detailsOk {
+		details = postedDetails[0]
+	}
+	fromName := ""
+	postedName, detailsOk := parameters["name"]
+	if detailsOk {
+		fromName = postedName[0]
+	}
 
 	// AWS CLI configuration
 	cfg, err := config.LoadDefaultConfig(context.TODO(), func(o *config.LoadOptions) error {
@@ -45,7 +60,7 @@ func HandleRequest(ctx context.Context, request events.APIGatewayV2HTTPRequest) 
 	email := SendEmail{
 		Svc: sesv2.NewFromConfig(cfg),
 	}
-	_, err = email.Send(&fromEmail, toEmail, sendEmail, &details)
+	_, err = email.Send(&fromName, &fromEmail, toEmail, sendEmail, &details)
 	if err != nil {
 		log.Println(err.Error())
 		resp := response.GetError()

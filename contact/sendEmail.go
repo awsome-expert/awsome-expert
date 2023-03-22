@@ -13,17 +13,17 @@ type SendEmail struct {
 	Svc *sesv2.Client
 }
 
-func (s *SendEmail) Send(fromEmail *string, toEmail *string, sendEmail *string, details *string) (*sesv2.SendEmailOutput, error) {
+func (s *SendEmail) Send(fromName *string, fromEmail *string, toEmail *string, sendEmail *string, details *string) (*sesv2.SendEmailOutput, error) {
 	return s.Svc.SendEmail(context.TODO(), &sesv2.SendEmailInput{
 		Content: &types.EmailContent{
 			Simple: &types.Message{
 				Subject: &types.Content{
-					Data:    aws.String(fmt.Sprintf("New AWSome meessage from %s", *fromEmail)),
+					Data:    aws.String(fmt.Sprintf("New AWSome meessage from %s", *fromName)),
 					Charset: aws.String("UTF-8"),
 				},
 				Body: &types.Body{
 					Text: &types.Content{
-						Data:    aws.String(fmt.Sprintf("From: %s\n\n%s", *fromEmail, *details)),
+						Data:    aws.String(fmt.Sprintf("From: %s\nEmail: %s\n\n%s", *fromName, *fromEmail, *details)),
 						Charset: aws.String("UTF-8"),
 					},
 				},
