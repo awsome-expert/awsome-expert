@@ -62,10 +62,10 @@
         {{ end }}
       <div>
         <form action="{{.Site.BaseURL}}/#skill">
-          <button type="submit">{{ .Site.Params.billboardSkillsButton }}</button>
+          <button aria-label="{{ .Site.Params.billboardSkillsButton }}" type="submit">{{ .Site.Params.billboardSkillsButton }}</button>
         </form>
         <form action="{{.Site.BaseURL}}/#contact">
-          <button type="submit">{{ .Site.Params.billboardContactButton }}</button>
+          <button aria-label="{{ .Site.Params.billboardContactButton }}" type="submit">{{ .Site.Params.billboardContactButton }}</button>
         </form>
       </div>
     </div>
@@ -95,7 +95,7 @@
         {{ .Content }}
       {{ end }}
       <form action="{{ .Site.Params.contactLinkedIn }}">
-        <button type="submit" class="linkedin">
+        <button aria-label="Contact trough linkedin" type="submit" class="linkedin">
           &nbsp; &nbsp; &nbsp; &nbsp;
         </button>
       </form>
@@ -117,7 +117,7 @@
         </label>
         <textarea rows="8" id="contactDetails" name="details"></textarea>
       </div>
-      <button type="submit" onclick="sendContact(event)">Submit</button>
+      <button aria-label="Submit the contact form" type="submit" onclick="sendContact(event)">Submit</button>
       <strong id="submitInfo" class="submitInfo"></strong>
     </form>
   </div>
