@@ -2,6 +2,7 @@ baseURL = 'http://awsome.expert/'
 languageCode = 'en-us'
 title = 'AWSome Expert'
 theme = "awsome"
+enableRobotsTXT = true
 # sectionPagesMenu = "main"
 [menu]
   [[menu.main]]
