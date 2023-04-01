@@ -50,11 +50,11 @@ func HandleRequest(ctx context.Context, request events.APIGatewayV2HTTPRequest) 
 	}
 
 	// Get parameters from SSM Parameter Store
-	parameter := SSMParameter{
+	ssmParameter := SSMParameter{
 		Svc: ssm.NewFromConfig(cfg),
 	}
-	toEmail := parameter.GetParameter("freelance_contact_email")
-	sendEmail := parameter.GetParameter("freelance_send_email")
+	toEmail := ssmParameter.GetParameter("/freelance/contact_email")
+	sendEmail := ssmParameter.GetParameter("/freelance/send_email")
 
 	// Send email
 	email := SendEmail{
