@@ -1,7 +1,6 @@
 import re
 
 import aws_cdk as cdk
-import aws_cdk.assertions as assertions
 from aws_cdk.assertions import (
     Template,
     Match,

@@ -29,9 +29,7 @@ class ContactAPI(Construct):
         # Create custom API domain name
         api_domain = apigw.DomainName(self, "AWSomeAPIDomainName",
             domain_name=domain_name,
-            certificate=acm.Certificate.from_certificate_arn(self, "APICert",
-                certificate_arn=certificate.certificate_arn,
-            ),
+            certificate=certificate,
         )
 
         # Map the custom API domain name to the HTTP API
