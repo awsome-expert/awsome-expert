@@ -39,7 +39,7 @@ class AWSomeStack(Stack):
             self, 'ContactAPI',
             domain_name=domain_name,
             certificate=certificate,
-            awsome_lambda=awsome_lambda,
+            contact_lambda=awsome_lambda._contact_lambda,
             hosted_zone=hosted_zone,
         )
 

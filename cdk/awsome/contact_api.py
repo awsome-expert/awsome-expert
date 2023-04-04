@@ -14,12 +14,12 @@ class ContactAPI(Construct):
     def contact_api(self):
         return self._contact_api
 
-    def __init__(self, scope: Construct, id: str, domain_name: str, certificate: acm.ICertificate, awsome_lambda: _lambda.IFunction, hosted_zone: route53.IHostedZone, **kwargs):
+    def __init__(self, scope: Construct, id: str, domain_name: str, certificate: acm.ICertificate, contact_lambda: _lambda.IFunction, hosted_zone: route53.IHostedZone, **kwargs):
         super().__init__(scope, id, **kwargs)
 
         # API Gateway HTTP API
         self._contact_api = apigw.HttpApi(self, "AWSome Contact")
-        contactIntegration = apigw_integrations.HttpLambdaIntegration('ContactAWSomeAPI', awsome_lambda._contact_lambda)
+        contactIntegration = apigw_integrations.HttpLambdaIntegration('ContactAWSomeAPI', contact_lambda)
         self._contact_api.add_routes(
             path='/contact',
             methods=[apigw.HttpMethod.ANY],

@@ -35,8 +35,8 @@ class ContactLambda(Construct):
         lambdaRole.add_to_policy(
             iam.PolicyStatement(
                 actions=[
-                    "ssm:GetParameters",
                     "ssm:GetParameter",
+                    "ssm:GetParameters",
                     "ssm:ListTagsForResource",
                 ],
                 resources=[f"arn:aws:ssm:{region}:{account}:parameter/freelance/*"],
