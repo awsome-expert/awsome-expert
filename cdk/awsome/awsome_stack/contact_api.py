@@ -27,19 +27,22 @@ class ContactAPI(Construct):
         )
 
         # Create custom API domain name
-        api_domain = apigw.DomainName(self, "AWSomeAPIDomainName",
+        api_domain = apigw.DomainName(
+            self, "AWSomeAPIDomainName",
             domain_name=domain_name,
             certificate=certificate,
         )
 
         # Map the custom API domain name to the HTTP API
-        apigw.ApiMapping(self, "AWSomeContactDomainMapping",
+        apigw.ApiMapping(
+            self, "AWSomeContactDomainMapping",
             api=self._contact_api,
             domain_name=api_domain,
         )
 
         # Create API domain name in Route53 to point to the custom domain name in APIGateway
-        route53.ARecord(self, "AWSomeAPIRecord",
+        route53.ARecord(
+            self, "AWSomeAPIRecord",
             zone=hosted_zone,
             record_name=domain_name,
             target=route53.RecordTarget.from_alias(

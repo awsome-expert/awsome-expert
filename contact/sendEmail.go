@@ -18,7 +18,7 @@ func (s *SendEmail) Send(fromName *string, fromEmail *string, toEmail *string, s
 		Content: &types.EmailContent{
 			Simple: &types.Message{
 				Subject: &types.Content{
-					Data:    aws.String(fmt.Sprintf("New AWSome meessage from %s", *fromName)),
+					Data:    aws.String(fmt.Sprintf("New AWSome message from %s", *fromName)),
 					Charset: aws.String("UTF-8"),
 				},
 				Body: &types.Body{

@@ -1,4 +1,6 @@
 import os
+import sys
+import shutil
 
 from constructs import Construct
 from aws_cdk import (
@@ -16,7 +18,8 @@ class ContactLambda(Construct):
         super().__init__(scope, id, **kwargs)
 
         # IAM role for the lambda function
-        lambdaRole = iam.Role(self, "AWSomeContactRole",
+        lambdaRole = iam.Role(
+            self, "AWSomeContactRole",
             assumed_by=iam.ServicePrincipal("lambda.amazonaws.com")
         )
         lambdaRole.add_to_policy(iam.PolicyStatement(
@@ -29,7 +32,10 @@ class ContactLambda(Construct):
                     "logs:CreateLogStream",
                     "logs:PutLogEvents",
                 ],
-                resources=[f"arn:aws:logs:{region}:{account}:log-group:/aws/lambda/AWSomeStack*:*"],
+                resources=[
+                    f"arn:aws:logs:{region}:{account}:log-group:/aws/lambda/AWSomeStack*:*",
+                    f"arn:aws:logs:{region}:{account}:log-group:/aws/lambda/Deploy-AWSomeStack*:*",
+                ],
             ),
         )
         lambdaRole.add_to_policy(
@@ -52,11 +58,22 @@ class ContactLambda(Construct):
             ),
         )
 
+        if "pytest" in sys.modules:
+            # Create dummy file for tests
+            zip_file = '../contact/contact.zip'
+            os.system('touch ' + zip_file)
+        else:
+            # Compile Go project
+            os.system('cd ../contact && GOOS=linux GOARCH=amd64 go build .')
+            # Compress binary
+            zip_file = shutil.make_archive('../contact/contact', 'zip', '../contact', 'contact')
+
         # Lambda function
         cwd = os.getcwd()
-        self._contact_lambda = _lambda.Function(self, "AWSomeContactLambda",
+        self._contact_lambda = _lambda.Function(
+            self, "AWSomeContactLambda",
             runtime=_lambda.Runtime.GO_1_X,
-            code=_lambda.Code.from_asset(os.path.join(cwd, "../contact/contact.zip")),
+            code=_lambda.Code.from_asset(os.path.join(cwd, zip_file)),
             handler='contact',
             role=lambdaRole,
         )

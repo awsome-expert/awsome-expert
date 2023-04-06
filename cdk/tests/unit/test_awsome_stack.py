@@ -7,7 +7,7 @@ from aws_cdk.assertions import (
     Capture,
 )
 
-from awsome.awsome_stack import AWSomeStack
+from awsome.awsome_stack.awsome_stack import AWSomeStack
 
 def get_awsome_stack_template():
     app = cdk.App()
