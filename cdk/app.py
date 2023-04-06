@@ -3,15 +3,17 @@ import os
 
 import aws_cdk as cdk
 
-from awsome.awsome_stack import AWSomeStack
+from awsome.pipeline.pipeline_stack import PipelineStack
 
 app = cdk.App()
-AWSomeStack(app, "AWSomeStack",
+
+PipelineStack(
+    app, "AWSomePipelineStack",
     env=cdk.Environment(
         account=os.getenv('CDK_DEFAULT_ACCOUNT'),
         region=os.getenv('CDK_DEFAULT_REGION'),
     ),
-    domain_name="api.awsome.expert"
+    domain_name="api.awsome.expert",
 )
 
 app.synth()

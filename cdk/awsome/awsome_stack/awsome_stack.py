@@ -24,12 +24,14 @@ class AWSomeStack(Stack):
 
         # Retrieve the Route 53 hosted zone for the domain
         apex_domain = tldextract.extract(domain_name).registered_domain
-        hosted_zone = route53.PublicHostedZone.from_lookup(self, "AWSomeExpertHostedZone",
+        hosted_zone = route53.PublicHostedZone.from_lookup(
+            self, "AWSomeExpertHostedZone",
             domain_name=apex_domain,
         )
 
         # Create certificate for the domain name
-        certificate = acm.Certificate(self, "ContactAPICert",
+        certificate = acm.Certificate(
+            self, "ContactAPICert",
             domain_name=domain_name,
             validation=acm.CertificateValidation.from_dns(hosted_zone),
         )
@@ -44,6 +46,7 @@ class AWSomeStack(Stack):
         )
 
         # SES domain verification
-        ses.EmailIdentity(self, "AWSomeEmailIdentity",
+        ses.EmailIdentity(
+            self, "AWSomeEmailIdentity",
             identity=ses.Identity.public_hosted_zone(hosted_zone),
         )

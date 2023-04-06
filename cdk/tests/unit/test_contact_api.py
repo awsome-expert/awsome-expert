@@ -12,8 +12,8 @@ from aws_cdk.assertions import (
     Capture,
 )
 
-from awsome.contact_lambda import ContactLambda
-from awsome.contact_api import ContactAPI
+from awsome.awsome_stack.contact_lambda import ContactLambda
+from awsome.awsome_stack.contact_api import ContactAPI
 
 def get_contact_api_template():
     domain_name = "api.awsome.expert"

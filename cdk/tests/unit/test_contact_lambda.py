@@ -7,7 +7,7 @@ from aws_cdk.assertions import (
     Capture,
 )
 
-from awsome.contact_lambda import ContactLambda
+from awsome.awsome_stack.contact_lambda import ContactLambda
 
 def get_contact_lambda_template():
     stack = Stack()
@@ -55,7 +55,10 @@ def test_iam_policy_log_group():
                     "logs:PutLogEvents"
                 ],
                 "Effect": "Allow",
-                "Resource": "arn:aws:logs:eu-west-1:123456789012:log-group:/aws/lambda/AWSomeStack*:*"
+                "Resource": [
+                    "arn:aws:logs:eu-west-1:123456789012:log-group:/aws/lambda/AWSomeStack*:*",
+                    "arn:aws:logs:eu-west-1:123456789012:log-group:/aws/lambda/Deploy-AWSomeStack*:*"
+                ]
             }])
         }
     })
