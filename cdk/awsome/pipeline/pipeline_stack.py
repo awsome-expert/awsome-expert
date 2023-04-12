@@ -16,7 +16,7 @@ class PipelineStack(Stack):
             self, "Pipeline",
             synth=pipelines.ShellStep(
                 "Synth",
-                input=pipelines.CodePipelineSource.connection("awsome-expert/awsome-expert", "main",
+                input=pipelines.CodePipelineSource.connection("awsome-expert/awsome-expert", "shellsteps",
                     connection_arn="arn:aws:codestar-connections:eu-west-1:846764252037:connection/8a64d1b3-354d-4007-9e30-e00183d794a7"
                 ),
                 commands=[
@@ -29,9 +29,19 @@ class PipelineStack(Stack):
             ),
         )
 
-        # Create a tests stage
-        unit_tests_stage = pipeline.add_wave("Tests")
-        unit_tests_stage.add_pre(pipelines.ShellStep(
+        # # Create a tests stage
+        # unit_tests_stage = pipeline.add_wave("Tests")
+        # unit_tests_stage.add_pre(pipelines.ShellStep(
+        #     "CDKUnitTests",
+        #     commands=[
+        #         "cd cdk",
+        #         "pip install -r requirements.txt",
+        #         "pip install -r requirements-dev.txt",
+        #         "pytest",
+        #     ],
+        # ))
+
+        pipelines.ShellStep(
             "CDKUnitTests",
             commands=[
                 "cd cdk",
@@ -39,7 +49,7 @@ class PipelineStack(Stack):
                 "pip install -r requirements-dev.txt",
                 "pytest",
             ],
-        ))
+        )
 
         # Create the deploy stage
         pipeline.add_stage(DeployStage(
