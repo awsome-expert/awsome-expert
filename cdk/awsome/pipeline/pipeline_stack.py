@@ -29,29 +29,9 @@ class PipelineStack(Stack):
             ),
         )
 
-        # # Create a tests stage
-        # unit_tests_stage = pipeline.add_wave("Tests")
-        # unit_tests_stage.add_pre(pipelines.ShellStep(
-        #     "CDKUnitTests",
-        #     commands=[
-        #         "cd cdk",
-        #         "pip install -r requirements.txt",
-        #         "pip install -r requirements-dev.txt",
-        #         "pytest",
-        #     ],
-        # ))
-
-        # Create the deploy stage
-        stagalaga = pipeline.add_stage(DeployStage(
-            self, "Deploy",
-            env=cdk.Environment(
-                account=kwargs["env"].account,
-                region=kwargs["env"].region,
-            ),
-            domain_name=domain_name,
-        ))
-
-        stagalaga.add_pre(pipelines.ShellStep(
+        # Create a tests stage
+        tests_stage = pipeline.add_wave("Tests")
+        tests_stage.add_pre(pipelines.ShellStep(
             "CDKUnitTests",
             commands=[
                 "cd cdk",
@@ -60,12 +40,13 @@ class PipelineStack(Stack):
                 "pytest",
             ],
         ))
-        stagalaga.add_pre(pipelines.ShellStep(
-            "DubCDKUnitTests",
-            commands=[
-                "cd cdk",
-                "pip install -r requirements.txt",
-                "pip install -r requirements-dev.txt",
-                "pytest",
-            ],
+
+        # Create the deploy stage
+        pipeline.add_stage(DeployStage(
+            self, "Deploy",
+            env=cdk.Environment(
+                account=kwargs["env"].account,
+                region=kwargs["env"].region,
+            ),
+            domain_name=domain_name,
         ))
